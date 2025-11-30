@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
-# This script will change your home IP address to the one you provide
+# Change localhost and facebook.com IP resolution
 
-echo -e "127.0.0.2\tlocalhost\n8.8.8.8\tfacebook.com" | sudo tee -a /etc/hosts
+# Remove existing localhost and facebook.com entries
+sudo grep -v "localhost" /etc/hosts | sudo grep -v "facebook.com" | sudo tee /etc/hosts.tmp > /dev/null
+
+# Add the required lines
+echo -e "127.0.0.2\tlocalhost\n8.8.8.8\tfacebook.com" | sudo tee -a /etc/hosts.tmp > /dev/null
+
+# Replace /etc/hosts with updated version
+sudo mv /etc/hosts.tmp /etc/hosts
