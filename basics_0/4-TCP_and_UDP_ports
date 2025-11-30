@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-# Display listening TCP/UDP sockets
-echo "Active Internet connections (only servers)"
-ss -tulnp
+# Display listening TCP/UDP sockets with PID/Program name
+netstat -tulpen
 
 # Display listening UNIX domain sockets
-echo "Active UNIX domain sockets (only servers)"
-ss -xlnp
+netstat -lxpen
